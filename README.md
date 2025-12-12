@@ -54,7 +54,7 @@ This keeps the project clean, professional, scalable, and easily adaptable.
 
 ## Project Structure
 ```
-StockPricePrediction/
+Stock-Price-Prediction-Using-LSTM/
 │
 ├── preprocessing.py
 ├── model_builder.py
