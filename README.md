@@ -11,9 +11,49 @@ and a main Jupyter Notebook (`main.ipynb`) that ties together the entire workflo
 
 This structure allows the same pipeline to work on **any stock dataset** with minimal adjustments.
 
----
+# Full Modularity of the Project
 
-## 🗂 Project Structure
+One of the core design principles of this project is **complete modularity**.
+
+### All core logic lives in `.py` modules  
+You can modify functions inside:
+
+- `preprocessing.py`  
+- `model_builder.py`  
+- `forecasting.py`  
+
+to change **how the model behaves**, without touching the notebook.
+
+### The notebook only controls:  
+- Input parameters (e.g., `time_step`, epochs, future_days)  
+- Which ticker/dataset to load  
+- Which functions to call  
+
+### Users can change:  
+- LSTM architecture  
+- Number of layers  
+- Number of neurons  
+- Sequence length (time_step)  
+- Forecasting horizon  
+- Train-test ratio  
+- Plotting styles  
+- Preprocessing steps  
+
+All by editing the `.py` modules — no duplication of code inside the notebook.
+
+### `main.ipynb` becomes a clean “controller”  
+It simply:
+
+1. Loads data  
+2. Calls preprocessing functions  
+3. Calls model builder functions  
+4. Calls forecasting functions  
+5. Generates plots  
+
+This keeps the project clean, professional, scalable, and easily adaptable.
+
+## Project Structure
+```
 StockPricePrediction/
 │
 ├── preprocessing.py
@@ -21,8 +61,9 @@ StockPricePrediction/
 ├── forecasting.py
 ├── main.ipynb
 └── README.md
+```
 
-# 📌 1. preprocessing.py
+# 1. preprocessing.py
 
 Handles **data cleaning, scaling, splitting, and sequence creation**.
 
@@ -63,7 +104,7 @@ Cleans the dataset by:
 - Resetting index  
 
 
-# 📌 2. model_builder.py
+# 2. model_builder.py
 
 Defines and trains the **Stacked LSTM model**.
 
@@ -92,7 +133,7 @@ Parameters include:
 Returns the training history.
 
 
-# 📌 3. forecasting.py
+# 3. forecasting.py
 
 Responsible for all **predictions, future forecasting, and visualizations**.
 
@@ -139,7 +180,7 @@ Generates the **final combined visualization**:
 
 This is the complete summary of the model’s performance.
 
-# 📓 4. main.ipynb — Full Workflow
+# 4. main.ipynb — Full Workflow
 
 The notebook executes the complete end-to-end pipeline:
 
